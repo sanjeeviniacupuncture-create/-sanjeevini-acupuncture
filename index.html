@@ -3,6 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#087f5b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sanjeevini Clinic">
 <title>Sanjeevini Acupuncture Clinic | Healer G. Suresh</title>
 <meta name="description" content="Sanjeevini Acupuncture Clinic by Healer G. Suresh. Acupuncture and supportive care for back pain, lumbar disc bulge, sciatica, headache, migraine, PCOD and diabetes-related wellness support.">
 <meta name="keywords" content="Sanjeevini Acupuncture Clinic, acupuncture, back pain, L3 L4 L5 disc bulge, sciatica, headache, migraine, PCOD">
@@ -10,8 +15,7 @@
 <meta property="og:title" content="Sanjeevini Acupuncture Clinic">
 <meta property="og:description" content="Acupuncture clinic by Healer G. Suresh. Book an appointment and contact the clinic.">
 <meta property="og:type" content="website">
-<style>.clinic-logo{width:150px;height:150px;object-fit:contain;border-radius:50%;display:block;margin:0 auto 12px;background:#fff}
-
+<style>
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4fbf8;color:#17352d}
 header{background:#087f5b;color:#fff;padding:28px 18px;text-align:center}.logo{font-size:44px}.name{font-size:27px;font-weight:800}.sub{margin-top:6px}
 nav{position:sticky;top:0;background:#fff;padding:10px;display:flex;gap:7px;overflow:auto;box-shadow:0 2px 8px #0001;z-index:5}nav a{padding:10px 14px;background:#e6f5ef;color:#087f5b;border-radius:20px;text-decoration:none;white-space:nowrap;font-weight:700}
@@ -27,7 +31,7 @@ label{display:block;font-weight:700;margin:10px 0 5px}input,select,textarea{widt
 </script>
 </head>
 <body>
-<header><img class="clinic-logo" src="clinic-logo.jpeg" alt="Sanjeevini Acupuncture Clinic logo"><div class="name">Sanjeevini Acupuncture Clinic</div><div class="sub">Healer G. Suresh</div></header>
+<header><div class="logo">🌿⚕️</div><div class="name">Sanjeevini Acupuncture Clinic</div><div class="sub">Healer G. Suresh</div></header>
 <nav>
 <a href="#home">Home</a><a href="#treatments">Treatments</a><a href="#appointment">Appointment</a><a href="#contact">Contact</a>
 </nav>
@@ -37,6 +41,7 @@ label{display:block;font-weight:700;margin:10px 0 5px}input,select,textarea{widt
 <p>Welcome to Sanjeevini Acupuncture Clinic. Explore our services and request an appointment.</p>
 <a class="btn white" href="#appointment">Book Appointment</a>
 <a class="btn wa" href="https://wa.me/919346598708">WhatsApp</a>
+<button id="installBtn" class="btn white" style="display:none;cursor:pointer" type="button">📲 Install App</button>
 </section>
 
 <section id="treatments" class="card">
@@ -85,6 +90,12 @@ function sendAppointment(e){
  window.open('https://wa.me/919346598708?text='+text,'_blank');
  document.getElementById('status').innerHTML='<div class="ok">WhatsApp opened with your appointment request.</div>';
 }
+</script>
+<script>
+let deferredPrompt; const ib=document.getElementById("installBtn");
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;ib.style.display="inline-block";});
+ib.addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;ib.style.display="none";});
+if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));
 </script>
 </body>
 </html>
