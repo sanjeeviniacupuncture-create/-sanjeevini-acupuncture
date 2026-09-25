@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#087f5b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sanjeevini Clinic">
+<link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#087f5b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -59,17 +65,11 @@ label{display:block;font-weight:700;margin:10px 0 5px}input,select,textarea{widt
 </section>
 
 <section id="appointment" class="card">
-<h2>Book an Appointment</h2>
-<form onsubmit="sendAppointment(event)">
-<label>Patient name</label><input id="patient" required>
-<label>Mobile number</label><input id="mobile" type="tel" required>
-<label>Preferred date</label><input id="date" type="date" required>
-<label>Preferred time</label><select id="time"><option>Morning</option><option>Afternoon</option><option>Evening</option></select>
-<label>Reason for visit</label><textarea id="reason" rows="3"></textarea>
-<button class="btn green" type="submit">Send Appointment Request on WhatsApp</button>
-</form>
-<div id="status"></div>
-<p class="note">The form opens WhatsApp with the appointment details so the clinic can confirm the booking.</p>
+<h2>Book an Appointment Online</h2>
+<p>Choose your preferred date and time and submit your appointment request through our secure online form.</p>
+<a class="btn green" href="https://docs.google.com/forms/d/e/1FAIpQLScw71RewCNOgzpIVoP_zl0TpRJFYZeZgBu_Pq4UkFTXbHkeLA/viewform?usp=header" target="_blank" rel="noopener">📅 Book Appointment Online</a>
+<a class="btn wa" href="https://wa.me/919346598708" target="_blank" rel="noopener">💬 WhatsApp the Clinic</a>
+<p class="note">After you submit the form, the clinic receives your appointment request and can contact you to confirm the booking.</p>
 </section>
 
 <section id="contact" class="card">
@@ -97,5 +97,6 @@ window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPro
 ib.addEventListener("click",async()=>{if(!deferredPrompt)return;deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;ib.style.display="none";});
 if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));
 </script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
 </body>
 </html>
